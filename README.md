@@ -16,6 +16,8 @@ That will launch you into a pseudo-shell with the Rails test environment reloade
 
 Now, run some commands. Ruby scripts that load Rails should start astronomically faster.
 
+Don't "bundle exec" inside gogo. It will really [exec](http://en.wikipedia.org/wiki/Exec_\(operating_system\)) and Rails will start as slow as before.
+
 For the nitty gritty, [read the source](https://github.com/brianhempel/gogo/blob/master/bin/gogo) and inspect the [default Gofile](https://github.com/brianhempel/gogo/blob/master/lib/gogo/gofile_templates/rails.rb) that is created in your project.
 
 ## Sounds fishy...
