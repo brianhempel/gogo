@@ -16,6 +16,8 @@ That will launch you into a pseudo-shell with the Rails test environment reloade
 
 Now, run some commands. Ruby scripts that load Rails should start astronomically faster.
 
+For the nitty gritty, [read the source](https://github.com/brianhempel/gogo/blob/master/bin/gogo) and inspect the [default Gofile](https://github.com/brianhempel/gogo/blob/master/lib/gogo/gofile_templates/rails.rb) that is created in your project.
+
 ## Sounds fishy...
 
 It is fishy. GoGo is a hack script.
