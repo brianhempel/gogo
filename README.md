@@ -53,20 +53,19 @@ Now, run some commands. Ruby scripts that load Rails should start astronomically
 
 ## Contributing
 
-This repository is public. If you wish, you may commit directly to it.
-
-    # fork it on github, then clone:
-    git clone git@github.com:brianhempel/jumpstart.git
-    # hack away
-    git push
-
-Or to get feedback on your changes first, use the standard pull request workflow:
+To fix a problem or add a feature, use the standard pull request workflow:
 
     # fork it on github, then clone:
     git clone git@github.com:YOUR_USERNAME/jumpstart.git
     # hack away
     git push
     # then make a pull request
+
+Once you get a pull request accepted, I'll add you so you can commit directly to the repository.
+
+    git clone git@github.com:brianhempel/jumpstart.git
+    # hack away
+    git push
 
 ## License
 
