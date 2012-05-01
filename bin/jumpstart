@@ -5,23 +5,24 @@ require 'fileutils'
 require 'readline'
 
 module Jumpstart
-  def self.preload(&:block)
+  def self.preload(&block)
     @preload = block if block_given?
     @preload || Proc.new
   end
 
-  def self.command_filter(&:block)
+  def self.command_filter(&block)
     @command_filter = block if block_given?
     @command_filter || Proc.new
   end
 
-  def self.before_each_ruby_command(&:block)
+  def self.before_each_ruby_command(&block)
     @before_each_ruby_command = block if block_given?
     @before_each_ruby_command || Proc.new
   end
 end
 
 unless File.exists?("Jumpfile")
+  puts "Creating default Jumpfile for Rails..."
   default_template_path = File.expand_path('../../lib/jumpstart/jumpfile_templates/rails.rb', __FILE__)
   FileUtils.cp(default_template_path, "Jumpfile")
 end
@@ -57,7 +58,7 @@ while line = Readline.readline("\033[1;30m#{Dir.pwd.sub(/.*\//, '')} \033[0;35m#
   end
   given_command, *arguments = line.split
 
-  given_command = Jumpstart.command_filter.call(given_command)
+  command = Jumpstart.command_filter.call(given_command)
 
   unless given_command == 'eval'
     command = `which #{command}`.chomp
