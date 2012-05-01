@@ -18,7 +18,7 @@ Now, run some commands. Ruby scripts that load Rails should start astronomically
 
 It is fishy. Jumpstart is a hack script.
 
-I'm sharing it with the world because it's an incredibly useful hack, but I can't guarantee any level of maintenance on my part. If stuff breaks, you're on your own to fix it. Leave your experience in the wiki to help others.
+I'm sharing it with the world because it's an incredibly useful hack, but I can't guarantee any level of maintenance on my part. If stuff breaks, you're on your own to fix it. Leave your experience in the [wiki](https://github.com/brianhempel/jumpstart/wiki) to help others.
 
 Jumpstart is a lot like Spork. Jumpstart preloads your rails environment. When you run a ruby command, the jumpstart process is forked and the command is loaded into that environment.  Here's a performance comparison for a large project:
 
