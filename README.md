@@ -1,3 +1,5 @@
+![Screaming dude meme: FASTER ALL THE RAILS](https://raw.github.com/brianhempel/gogo/master/irrelevant/faster_all_the_rails.jpg "FASTER ALL THE RAILS")
+
 # GoGo
 
 Yaknow how you're waiting for waiting for Rails to start and other people overhear you say "Go Go Go Go!" to your computer?
