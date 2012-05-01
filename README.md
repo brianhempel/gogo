@@ -1,29 +1,75 @@
 # Jumpstart
 
-TODO: Write a gem description
+Jumpstart is a hack script.
 
-## Installation
+I'm sharing it with the world because it's an incredibly useful hack, but I can't guarantee any level of maintenance on my part. If stuff breaks, you're on your own to fix it. Leave your experience in the wiki to help others.
 
-Add this line to your application's Gemfile:
+Jumpstart is a lot like Spork. Jumpstart preloads your rails environment. When you run a ruby command, the jumpstart process is forked and the command is loaded into that environment.  Here's a performance comparison for a large project:
 
-    gem 'jumpstart'
+    $ time bundle exec cucumber features/admin/dashboard.feature:0
+    real	0m30.457s
+    user	0m27.300s
+    sys	0m2.941s
+    
+    $ jumpstart
+    Creating default Jumpfile for Rails...
+    Loading application.rb...and environment.rb...and cucumber...and cucumber/rails...and webmock/cucumber...and ruby-debug...and factory_girl/step_definitions...and email_spec...and email_spec/cucumber...and capybara/firebug...and vcr...and rake...took 26.25 seconds.
+    test $ cucumber features/admin/dashboard.feature:0
+    cucumber took 3.65 seconds.
+    test $ cucumber features/admin/dashboard.feature:0
+    cucumber took 3.58 seconds.
 
-And then execute:
+The advantages over Spork are:
 
-    $ bundle
+1. No DRB weirdness
+2. Easy install -- little to no modification to test environment.
+3. Speeds up other rails commands: rake routes, rails g migration, rake db:seed
+4. Single tab, so you know when code reloads are complete.
 
-Or install it yourself as:
+General disadvantages:
 
-    $ gem install jumpstart
+1. It's not a full shell. No aliases or boolean logic || && for commands.
+2. You're already in a bundled environment, so rake db:seed is going to apply to the test environment. You probably don't want that.
+3. Have to ctrl-D and reload after Gemfile changes.
+4. Uses some Mac OS X only features, but if you want to hack those out it shouldn't be too hard.
 
-## Usage
+One advantage over even the shell is a per-project and per-environment command history.
 
-TODO: Write usage instructions here
+## Installation & Usage
+
+Just install the gem:
+
+    gem install jumpstart
+
+Make sure you're in your Rails project and then run:
+
+    $ jumpstart
+
+That will launch you into a pseudo-shell with the Rails test environment reloaded. If you want to use jumpstart for development commands such as `rake db:seed`, `rake db:migrate`, or `rails console`, launch a separate shell and run:
+
+    $ jumpstart d
+
+Now, run some commands. Ruby scripts that load Rails should start astronomically faster.
 
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+This repository is public. If you wish, you may commit directly to it.
+
+    # fork it on github, then clone:
+    git clone git@github.com:brianhempel/jumpstart.git
+    # hack away
+    git push
+
+Or to get feedback on your changes first, use the standard pull request workflow:
+
+    # fork it on github, then clone:
+    git clone git@github.com:YOUR_USERNAME/jumpstart.git
+    # hack away
+    git push
+    # then make a pull request
+
+## License
+
+Public domain; no restrictions.
+
+And certainly: no warrantee of fitness for any purpose. It's a hack. Use at your own risk.
