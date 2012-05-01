@@ -4,7 +4,7 @@ require 'benchmark'
 require 'fileutils'
 require 'readline'
 
-module Jumpstart
+module GoGo
   def self.preload(&block)
     @preload = block if block_given?
     @preload || Proc.new
@@ -21,14 +21,14 @@ module Jumpstart
   end
 end
 
-unless File.exists?("Jumpfile")
-  puts "Creating default Jumpfile for Rails..."
-  default_template_path = File.expand_path('../../lib/jumpstart/jumpfile_templates/rails.rb', __FILE__)
-  FileUtils.cp(default_template_path, "Jumpfile")
+unless File.exists?("Gofile")
+  puts "Creating default Gofile for Rails..."
+  default_template_path = File.expand_path('../../lib/gogo/Gofile_templates/rails.rb', __FILE__)
+  FileUtils.cp(default_template_path, "Gofile")
 end
-load("Jumpfile")
+load("Gofile")
 
-Jumpstart.preload.call
+GoGo.preload.call
 
 Readline.completion_proc = Proc.new do |str|
   Readline.completion_append_character = "" # space doesn't work on OS X :(
@@ -42,8 +42,8 @@ Readline.completion_proc = Proc.new do |str|
   command_candidates + file_candidates + rake_task_candidates
 end
 
-ENV['JUMPSTART_ENV'] ||= 'development'
-history_file_path = ".jumpstart_history-#{ENV['JUMPSTART_ENV']}"
+ENV['GOGO_ENV'] ||= 'development'
+history_file_path = ".gogo_history-#{ENV['GOGO_ENV']}"
 
 # load old history
 if File.exists?(history_file_path)
@@ -51,14 +51,14 @@ if File.exists?(history_file_path)
   File.read(history_file_path).lines.each { |l| Readline::HISTORY << l.chomp }
 end
 
-while line = Readline.readline("\033[1;32m#{Dir.pwd.sub(/.*\//, '')} \033[0;35m#{ENV['JUMPSTART_ENV']} \033[0;34m$ \033[0m", true)
+while line = Readline.readline("\033[1;32m#{Dir.pwd.sub(/.*\//, '')} \033[0;35m#{ENV['GOGO_ENV']} \033[0;34m$ \033[0m", true)
   if line.blank?
     Readline::HISTORY.pop # don't store blank commands in history
     next
   end
   given_command, *arguments = line.split
 
-  command = Jumpstart.command_filter.call(given_command)
+  command = GoGo.command_filter.call(given_command)
 
   unless given_command == 'eval'
     command = `which #{command}`.chomp
@@ -76,7 +76,7 @@ while line = Readline.readline("\033[1;32m#{Dir.pwd.sub(/.*\//, '')} \033[0;35m#
       p eval(line.sub(/^eval\s+/, ''))
     elsif `file #{command}` =~ /: a .*ruby.* script text executable/
 
-      Jumpstart.before_each_ruby_command.call(given_command, arguments)
+      GoGo.before_each_ruby_command.call(given_command, arguments)
 
       silence_warnings { ARGV = arguments }
       load(command)

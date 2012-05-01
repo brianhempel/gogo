@@ -4,14 +4,14 @@
 AUTOCOMPLETE_COMMANDS = ['rake ', 'cucumber features/', 'rails ', 'rspec spec/'].sort
 RAKE_COMMANDS = ['db', 'db:migrate', 'db:test:prepare', 'db:rollback', 'routes', 'sunspot:reindex', 'sunspot:solr:start', 'sunspot:solr:start', 'sunspot:solr:stop', 'assets:clean', 'assets:precompile']
 
-Jumpstart.preload do
+GoGo.preload do
   if ARGV[0]
     ENV['RAILS_ENV'] = %w{development test production staging}.find { |e| e[0] == ARGV[0][0] } || ARGV[0]
   else
-    ENV['RAILS_ENV'] = ENV['JUMPSTART_ENV'] || 'test'
+    ENV['RAILS_ENV'] = ENV['GOGO_ENV'] || 'test'
   end
-  # need JUMPSTART_ENV for the history file
-  ENV['JUMPSTART_ENV'] = ENV['RAILS_ENV']
+  # need GOGO_ENV for the history file
+  ENV['GOGO_ENV'] = ENV['RAILS_ENV']
 
   load_time = Benchmark.realtime do
     print "Loading application.rb..."
@@ -41,7 +41,7 @@ Jumpstart.preload do
         # this shaves off another 2 seconds
         # even though most of the loads technically fail
         ENV['RAILS_ROOT'] = Dir.pwd
-        other_paths = File.read(Dir.pwd + "/features/support/env.rb").scan(/^require ['"](.+?)['"](?!.*jumpstart: skip)/).flatten
+        other_paths = File.read(Dir.pwd + "/features/support/env.rb").scan(/^require ['"](.+?)['"](?!.*gogo: skip)/).flatten
         other_paths.each do |path|
           print "and #{path}..."
           begin
@@ -61,12 +61,12 @@ Jumpstart.preload do
   puts "took %.2f seconds." % load_time
 end
 
-Jumpstart.command_filter do |given_command|
+GoGo.command_filter do |given_command|
   # running just "rails" does an exec which reloads everything and defeats the point of preloading
   given_command == 'rails' ? './script/rails' : given_command
 end
 
-Jumpstart.before_each_ruby_command do |given_command, arguments|
+GoGo.before_each_ruby_command do |given_command, arguments|
   if given_command =~ /^(cucumber|rspec)$/ && ENV['RAILS_ENV'] != 'test'
     STDERR.puts "Don't run your tests when not in the test environment!"
     exit 1

@@ -1,3 +1,3 @@
-module Jumpstart
+module GoGo
   VERSION = "1"
 end

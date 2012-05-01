@@ -1,34 +1,36 @@
-# Jumpstart
+# GoGo
+
+Yaknow how you're waiting for waiting for Rails to start and other people overhear you say "Go Go Go Go!" to your computer?
 
 Install the gem:
 
-    gem install jumpstart
+    gem install gogo
 
 Make sure you're in your Rails project and then run:
 
-    $ jumpstart
+    $ gogo
 
-That will launch you into a pseudo-shell with the Rails test environment reloaded. If you want to use jumpstart for development commands such as `rake db:seed`, `rake db:migrate`, or `rails console`, launch a separate shell and run:
+That will launch you into a pseudo-shell with the Rails test environment reloaded. If you want to use gogo for development commands such as `rake db:seed`, `rake db:migrate`, or `rails console`, launch a separate shell and run:
 
-    $ jumpstart d
+    $ gogo d
 
 Now, run some commands. Ruby scripts that load Rails should start astronomically faster.
 
 ## Sounds fishy...
 
-It is fishy. Jumpstart is a hack script.
+It is fishy. GoGo is a hack script.
 
-I'm sharing it with the world because it's an incredibly useful hack, but I can't guarantee any level of maintenance on my part. If stuff breaks, you're on your own to fix it. Leave your experience in the [wiki](https://github.com/brianhempel/jumpstart/wiki) to help others.
+I'm sharing it with the world because it's an incredibly useful hack, but I can't guarantee any level of maintenance on my part. If stuff breaks, you're on your own to fix it. Leave your experience in the [wiki](https://github.com/brianhempel/gogo/wiki) to help others.
 
-Jumpstart is a lot like Spork. Jumpstart preloads your rails environment. When you run a ruby command, the jumpstart process is forked and the command is loaded into that environment.  Here's a performance comparison for a large project:
+GoGo is a lot like Spork. GoGo preloads your rails environment. When you run a ruby command, the gogo process is forked and the command is loaded into that environment.  Here's a performance comparison for a large project:
 
     $ time bundle exec cucumber features/admin/dashboard.feature:0
     real  0m30.457s
     user  0m27.300s
     sys   0m2.941s
     
-    $ jumpstart
-    Creating default Jumpfile for Rails...
+    $ gogo
+    Creating default Gofile for Rails...
     Loading application.rb...and environment.rb...and cucumber...and cucumber/rails...and webmock/cucumber...and ruby-debug...and factory_girl/step_definitions...and email_spec...and email_spec/cucumber...and capybara/firebug...and vcr...and rake...took 26.25 seconds.
     test $ cucumber features/admin/dashboard.feature:0
     cucumber took 3.65 seconds.
@@ -56,14 +58,14 @@ One advantage over even the shell is a per-project and per-environment command h
 To fix a problem or add a feature, use the standard pull request workflow:
 
     # fork it on github, then clone:
-    git clone git@github.com:YOUR_USERNAME/jumpstart.git
+    git clone git@github.com:YOUR_USERNAME/gogo.git
     # hack away
     git push
     # then make a pull request
 
 Once you get a pull request accepted, I'll add you so you can commit directly to the repository.
 
-    git clone git@github.com:brianhempel/jumpstart.git
+    git clone git@github.com:brianhempel/gogo.git
     # hack away
     git push
 
