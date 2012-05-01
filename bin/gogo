@@ -23,7 +23,7 @@ end
 
 unless File.exists?("Gofile")
   puts "Creating default Gofile for Rails..."
-  default_template_path = File.expand_path('../../lib/gogo/Gofile_templates/rails.rb', __FILE__)
+  default_template_path = File.expand_path('../../lib/gogo/gofile_templates/rails.rb', __FILE__)
   FileUtils.cp(default_template_path, "Gofile")
 end
 load("Gofile")
