@@ -51,7 +51,7 @@ if File.exists?(history_file_path)
   File.read(history_file_path).lines.each { |l| Readline::HISTORY << l.chomp }
 end
 
-while line = Readline.readline("\033[1;30m#{Dir.pwd.sub(/.*\//, '')} \033[0;35m#{ENV['JUMPSTART_ENV']} \033[0;34m$ \033[0m", true)
+while line = Readline.readline("\033[1;32m#{Dir.pwd.sub(/.*\//, '')} \033[0;35m#{ENV['JUMPSTART_ENV']} \033[0;34m$ \033[0m", true)
   if line.blank?
     Readline::HISTORY.pop # don't store blank commands in history
     next
