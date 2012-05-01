@@ -1,4 +1,4 @@
-# autocomplete commands
+# commands for tab-completion -- feel free to add your own!
 # thanks to http://bogojoker.com/readline/
 # and to https://github.com/ruby/ruby/blob/trunk/ext/readline/readline.c
 AUTOCOMPLETE_COMMANDS = ['rake ', 'cucumber features/', 'rails ', 'rspec spec/'].sort
