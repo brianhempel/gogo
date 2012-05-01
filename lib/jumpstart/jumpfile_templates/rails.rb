@@ -37,6 +37,7 @@ Jumpstart.preload do
       begin
         require 'cucumber' # saves 0.4 seconds when running cucumber
 
+        # load everything that appears in test env.rb
         # this shaves off another 2 seconds
         # even though most of the loads technically fail
         ENV['RAILS_ROOT'] = Dir.pwd
@@ -44,6 +45,7 @@ Jumpstart.preload do
         other_paths.each do |path|
           print "and #{path}..."
           begin
+            # load in annoymous modules so, basically, we're just cache-warming
             load(path + '.rb', true)
           rescue
           end
