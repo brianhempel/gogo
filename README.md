@@ -4,7 +4,7 @@
 
 Yaknow how you're waiting for waiting for Rails to start and other people overhear you say "Go Go Go Go!" to your computer?
 
-Install the gem:
+Install the gem (no need to put it in your Gemfile):
 
     gem install gogo
 
