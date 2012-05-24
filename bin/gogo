@@ -47,7 +47,11 @@ history_file_path = ".gogo_history-#{ENV['GOGO_ENV']}"
 
 # load old history
 if File.exists?(history_file_path)
-  Readline::HISTORY.clear
+  if Readline::HISTORY.respond_to?(:clear)
+    Readline::HISTORY.clear
+  else
+    Readline::HISTORY.size.times { Readline::HISTORY.pop }
+  end
   File.read(history_file_path).lines.each { |l| Readline::HISTORY << l.chomp }
 end
 
