@@ -1,3 +1,3 @@
 module GoGo
-  VERSION = "1"
+  VERSION = "2"
 end
